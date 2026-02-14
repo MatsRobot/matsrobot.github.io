@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MatsRobot | Robotics & Hardware Solutions</title>
+    <meta name="description" content="Official project hub for MatsRobot. Documentation for ESP32-CAM, RP2040, and Battery Management Systems.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "MatsRobot Project Hub",
+      "description": "Robotics, IoT, and Power Systems Solutions documentation and source code.",
+      "url": "https://matsrobot.github.io/",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Face Tracking (ESP32-CAM)", "url": "https://matsrobot.github.io/Face-Tracking-using-ESP32-CAM/" },
+        { "@type": "ListItem", "position": 2, "name": "RP2040 LCD 0.96", "url": "https://matsrobot.github.io/RP2040-LCD-0.96/" },
+        { "@type": "ListItem", "position": 3, "name": "Robot Blinking Eyes", "url": "https://matsrobot.github.io/Robots-Blinking-Eyes-using-GC9A01-display/" },
+        { "@type": "ListItem", "position": 4, "name": "Bluetooth Motor Control", "url": "https://matsrobot.github.io/DC-motor-Controller-using-Pico-and-HC-06/" },
+        { "@type": "ListItem", "position": 5, "name": "I2C Processor Comms", "url": "https://matsrobot.github.io/I2C-communication-between-Processors/" },
+        { "@type": "ListItem", "position": 6, "name": "USBasp Firmware Update", "url": "https://matsrobot.github.io/USBasp-firmware-update/" },
+        { "@type": "ListItem", "position": 7, "name": "RFID Clocking Machine", "url": "https://matsrobot.github.io/RFID-Clocking-Machine-with-logger/" },
+        { "@type": "ListItem", "position": 8, "name": "Battery Capacity Tester", "url": "https://matsrobot.github.io/Mobility-Scooter-Battery-Capacity-Tester/" },
+        { "@type": "ListItem", "position": 9, "name": "PondGuard IoT Monitor", "url": "https://matsrobot.github.io/PondGuard-IoT-Water-Level-Temperature-Monitor/" },
+        { "@type": "ListItem", "position": 10, "name": "MT6701 Fritzing Part", "url": "https://matsrobot.github.io/Create-New-Fritzing_Part-MT6701/" }
+      ]
+    }
+    </script>
+
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
+            background-color: #0d1117; 
+            color: #c9d1d9; 
+            margin: 0; 
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .profile-header {
+            text-align: center;
+            padding: 40px 10px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #30363d;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover { transform: scale(1.05); }
+
+        h1 { color: #f0f6fc; margin: 0; font-size: 2rem; }
+        .bio { color: #8b949e; font-size: 1.1rem; margin-top: 5px; margin-bottom: 20px; }
+
+        .project-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 20px; 
+            max-width: 1100px; 
+            margin: 0 auto; 
+        }
+
+        .card { 
+            background: #161b22; 
+            border: 1px solid #30363d; 
+            padding: 24px; 
+            border-radius: 8px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover { border-color: #58a6ff; }
+
+        .project-title-link {
+            text-decoration: none;
+            color: #58a6ff;
+        }
+        .project-title-link:hover {
+            text-decoration: underline;
+        }
+
+        h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
+        p { font-size: 0.9rem; color: #8b949e; margin-bottom: 15px; flex-grow: 1; }
+
+        .tag-container { margin-bottom: 15px; }
+        .tag { 
+            background: #21262d; 
+            color: #c9d1d9; 
+            padding: 2px 8px; 
+            border-radius: 10px; 
+            font-size: 11px; 
+            margin-right: 5px; 
+            border: 1px solid #30363d;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid #30363d;
+            padding-top: 15px;
+        }
+
+        .btn-github { 
+            background-color: #238636;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .btn-github:hover { background-color: #2ea043; }
+
+        footer { 
+            margin-top: 60px; 
+            text-align: center; 
+            font-size: 12px; 
+            color: #8b949e; 
+            padding: 40px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-header">
+    <a href="https://github.com/MatsRobot">
+        <img src="https://github.com/MatsRobot.png" alt="MatsRobot Avatar" class="avatar">
+    </a>
+    <h1>MatsRobot</h1>
+    <p class="bio">Robotics, IoT, and Power Systems Solutions</p>
+</div>
+
+<div class="project-grid">
+    
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/Face-Tracking-using-ESP32-CAM/">Face Tracking (ESP32-CAM)</a></h3>
+            <p>Real-time computer vision and PID servo control using OpenCV and ESP32-CAM.</p>
+            <div class="tag-container">
+                <span class="tag">C++</span><span class="tag">Python</span><span class="tag">OpenCV</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/Face-Tracking-using-ESP32-CAM">View GitHub Repository</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/RP2040-LCD-0.96/">RP2040 LCD 0.96"</a></h3>
+            <p>Implementation guides and driver libraries for Waveshare RP2040 integrated color displays.</p>
+            <div class="tag-container">
+                <span class="tag">MicroPython</span><span class="tag">SPI</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/RP2040-LCD-0.96">View GitHub Repository</a>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/Robots-Blinking-Eyes-using-GC9A01-display/">Robot Blinking Eyes</a></h3>
+            <p>Animated eye expressions and pupil movement for robots using GC9A01 round LCDs.</p>
+            <div class="tag-container">
+                <span class="tag">Animatronics</span><span class="tag">Graphics</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/Robots-Blinking-Eyes-using-GC9A01-display">View GitHub Repository</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/DC-motor-Controller-using-Pico-and-HC-06/">Bluetooth Motor Control</a></h3>
+            <p>Wireless DC motor control using HC-06 Bluetooth and Raspberry Pi Pico.</p>
+            <div class="tag-container">
+                <span class="tag">Pico</span><span class="tag">Bluetooth</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/DC-motor-Controller-using-Pico-and-HC-06">View GitHub Repository</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/I2C-communication-between-Processors/">I2C Processor Comms</a></h3>
+            <p>Master-Slave protocol implementation for distributed microcontroller systems.</p>
+            <div class="tag-container">
+                <span class="tag">I2C</span><span class="tag">Embedded</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/I2C-communication-between-Processors">View GitHub Repository</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/USBasp-firmware-update/">USBasp Firmware Update</a></h3>
+            <p>Workflow for upgrading USBasp programmers to fix clock and driver issues.</p>
+            <div class="tag-container">
+                <span class="tag">AVR</span><span class="tag">Firmware</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/USBasp-firmware-update">View GitHub Repository</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/RFID-Clocking-Machine-with-logger/">RFID Clocking Machine</a></h3>
+            <p>Automated time-tracking and data logging system using RFID MFRC522 and Arduino.</p>
+            <div class="tag-container">
+                <span class="tag">RFID</span><span class="tag">Logistics</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/RFID-Clocking-Machine-with-logger">View GitHub Repository</a>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/Mobility-Scooter-Battery-Capacity-Tester/">Battery Capacity Tester</a></h3>
+            <p>Precision Arduino-based monitor for mobility scooter battery health analysis.</p>
+            <div class="tag-container">
+                <span class="tag">Arduino</span><span class="tag">BMS</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/Mobility-Scooter-Battery-Capacity-Tester">View GitHub Repository</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/PondGuard-IoT-Water-Level-Temperature-Monitor/">PondGuard IoT Monitor</a></h3>
+            <p>Smart pond monitoring system using laser distance sensors and thermal profiling to prevent drainage disasters.</p>
+            <div class="tag-container">
+                <span class="tag">IoT</span><span class="tag">ESP8266</span><span class="tag">ThingSpeak</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/PondGuard-IoT-Water-Level-Temperature-Monitor">View GitHub Repository</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div>
+            <h3><a class="project-title-link" href="https://matsrobot.github.io/Create-New-Fritzing_Part-MT6701/">MT6701 Fritzing Part</a></h3>
+            <p>Custom component creation for MT6701 Magnetic Encoder with PCB footprints.</p>
+            <div class="tag-container">
+                <span class="tag">PCB Design</span><span class="tag">Fritzing</span>
+            </div>
+        </div>
+        <div class="links-container">
+            <a class="btn-github" href="https://github.com/MatsRobot/Create-New-Fritzing_Part-MT6701">View GitHub Repository</a>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 MatsRobot. All technical solutions are open-source.</p>
+</footer>
+
+</body>
+</html>
+
