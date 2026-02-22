@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://matsrobot.github.io/Favicon-192.png" sizes="192x192">
+    
+    <title>MatsRobot | Robotics & Hardware Solutions</title>
+    <meta name="description" content="Documenting the undocumented hurdles of building a full-size humanoid robot. Open-source solutions for ESP32-CAM, RP2040, and custom robotics hardware.">
+
+    <style>
+        :root {
+            --gh-green: #238636;
+            --gh-green-hover: #2ea44f;
+            --gh-dark: #24292e;
+            --gh-blue: #0366d6;
+            --gh-border: #eaecef;
+            --gh-bg-gray: #f6f8fa;
+            --note-bg: #fffbdd;
+            --note-border: #d4a017;
+            --text-muted: #586069;
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
+            background-color: #ffffff; 
+            color: var(--gh-dark); 
+            margin: 0; 
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        .profile-header {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .avatar-container { flex: 1; text-align: center; }
+        .header-text { flex: 3; }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 1px solid var(--gh-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h1 { font-size: 2.2rem; margin: 0; color: var(--gh-dark); font-weight: 600; }
+        .bio { color: var(--gh-blue); font-size: 1.1rem; margin-top: 2px; font-weight: 500; }
+
+        .mission-statement {
+            background-color: var(--note-bg);
+            padding: 1.1rem;
+            border-left: 5px solid var(--note-border);
+            margin: 1rem 0;
+            border-radius: 4px;
+            color: var(--gh-dark);
+            font-size: 0.95rem;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 0 2rem 5rem 2rem;
+        }
+
+        h2 { 
+            color: var(--gh-blue); 
+            border-bottom: 1px solid var(--gh-border); 
+            padding-bottom: 0.2em; 
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 1.2rem; 
+            margin-top: 1rem;
+        }
+
+        .card { 
+            background: #fff; 
+            border: 1px solid var(--gh-border); 
+            padding: 1.2rem; 
+            border-radius: 6px; 
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.2s;
+        }
+
+        .card-content-wrapper {
+            display: flex;
+            gap: 15px;
+        }
+
+        .card-text {
+            flex: 1;
+        }
+
+        .project-title-link {
+            text-decoration: none;
+            color: var(--gh-blue);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .project-title-link:hover { text-decoration: underline; }
+
+        .card p { font-size: 0.9rem; color: var(--text-muted); margin: 0 0 1.2rem 0; flex-grow: 1; }
+
+        .tag-container { margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 6px; }
+        .tag { 
+            background: var(--gh-bg-gray); 
+            padding: 2px 8px; 
+            border-radius: 12px; 
+            font-size: 10px; 
+            border: 1px solid var(--gh-border);
+            font-weight: 500;
+        }
+
+        .tech-spec-line {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 0.75rem;
+            color: var(--gh-dark);
+            background: #f1f8ff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .btn-github { 
+            background-color: var(--gh-green); 
+            color: white !important; 
+            padding: 8px 16px; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            display: inline-block; 
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            border: 1px solid rgba(27, 31, 35, 0.15);
+        }
+
+        .btn-github:hover { background-color: var(--gh-green-hover); }
+
+        .project-img-box {
+            flex: 0 0 120px;
+            width: 120px;
+            height: 120px;
+            border-radius: 6px;
+            border: 1px solid var(--gh-border);
+            background-size: contain; 
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #ffffff !important; 
+            transition: all 0.2s ease-in-out;
+            display: block !important;
+        }
+
+        .project-img-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* --- IMAGES --- */
+        .face-tracker-img { background-image: url('https://raw.githubusercontent.com/MatsRobot/Face-Tracking-using-ESP32-CAM/main/FaceTracker.gif'); }
+        .face-tracker-img:hover { background-image: url('https://raw.githubusercontent.com/MatsRobot/Face-Tracking-using-ESP32-CAM/main/Circuit%20Diagram%20Head%20V2.1.jpg'); }
+
+        .roboeyes-img { background-image: url('https://raw.githubusercontent.com/MatsRobot/Robots-Blinking-Eyes-using-GC9A01-display/main/Blink3.gif'); }
+        .roboeyes-img:hover { background-image: url('https://raw.githubusercontent.com/MatsRobot/Robots-Blinking-Eyes-using-GC9A01-display/main/RobotEyes_Wiring%20diagram.jpg'); }
+
+        .rp2040-lcd-img { background-image: url('https://github.com/user-attachments/assets/c3657bc8-787d-4498-a4cc-5451ca208107'); }
+        .rp2040-lcd-img:hover { background-image: url('https://raw.githubusercontent.com/MatsRobot/RP2040-LCD-0.96/main/RP2040-LCD-0.96_VSC.png'); }
+
+        .pico-motor-img { background-image: url('https://github.com/user-attachments/assets/2beb45cb-d587-44a7-9c6e-a3a469dc8359'); }
+        .pico-motor-img:hover { background-image: url('https://raw.githubusercontent.com/MatsRobot/DC-motor-Controller-using-Pico-and-HC-06/main/BaseUnit_bb.jpg'); }
+
+        .i2c-img { background-image: url('https://raw.githubusercontent.com/MatsRobot/I2C-communication-between-Processors/main/I2C%20Comms%20Pico%20Master%20Arduino%20Slave/I2C_Link_With_Arduino_HCSR04/I2C_Link_With_Arduino_HCSR04_Wiring.jpg'); }
+        .i2c-img:hover { background-image: url('https://raw.githubusercontent.com/MatsRobot/I2C-communication-between-Processors/main/I2C%20Comms%20Pico%20Master%20Arduino%20Slave/I2C_Link_With_Arduino_MaxSonar/I2C_Link_With_Arduino_MaxSonar_Wiring.jpg'); }
+
+        .usbasp-img { background-image: url('https://github.com/user-attachments/assets/0bea233e-3521-4b5c-af7b-8fcd9180a74d'); }
+        .usbasp-img:hover { background-image: url('https://raw.githubusercontent.com/MatsRobot/USBasp-firmware-update/main/USBasp.png'); }
+
+        .rfid-img { background-image: url('https://github.com/user-attachments/assets/79eed358-6a81-447c-b9f7-1024a7ddc5df'); }
+        .rfid-img:hover { background-image: url('https://github.com/MatsRobot/RFID-Clocking-Machine-with-logger/raw/main/RFID_Clocking_Machine_V4.4_bb.jpg'); }
+        
+        .battery-img { background-image: url('https://github.com/user-attachments/assets/4e2f7d95-faed-4111-bf52-be06c072d546'); }
+        .battery-img:hover { background-image: url('https://raw.githubusercontent.com/MatsRobot/Mobility-Scooter-Battery-Capacity-Tester/main/LeadAcidBatteryTester_Circuit.jpg'); }
+
+        .telemetry-img { background-image: url('https://github.com/user-attachments/assets/5a6b6f9a-1895-4b2e-9d01-fa154d5c94f0'); }
+        .telemetry-img:hover { background-image: url('https://raw.githubusercontent.com/MatsRobot/Robot-IoT-Telemetry/main/Wiring%20Diagram.png'); }
+
+        .mt6701-img { background-image: url('https://github.com/user-attachments/assets/1c865b8d-d03e-4994-b2b1-2320f37c6ebe'); }
+        .mt6701-img:hover { background-image: url('https://github.com/user-attachments/assets/0a2c6a35-7743-4e2b-aba9-47cb5250f7af'); }
+
+        footer { 
+            background-color: var(--gh-bg-gray);
+            margin-top: 4rem; 
+            padding: 3rem 0;
+            border-top: 1px solid var(--gh-border); 
+            text-align: center; 
+            color: #6a737d; 
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header { flex-direction: column; text-align: left; padding: 1rem 1.5rem 0.5rem 1.5rem; gap: 0.8rem; }
+            .avatar { width: 90px; height: 90px; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-img-box { width: 80px; height: 80px; flex: 0 0 80px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="profile-header">
+    <div class="avatar-container">
+        <a href="https://github.com/MatsRobot">
+            <img src="https://github.com/MatsRobot.png" alt="MatsRobot" class="avatar">
+        </a>
+    </div>
+    <div class="header-text">
+        <h1>MatsRobot</h1>
+        <p class="bio">Robotics, IoT, and Power Systems Solutions</p>
+        <div class="mission-statement">
+            Welcome to the <strong>MatsRobot</strong> hub. We solve and document high-difficulty robotics challenges that lack online documentation. From prototyping full-scale hardware to open-sourcing build instructions. Explore our work on computer vision, magnetic encoders, animatronics and more.
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <h2>Project Hub</h2>
+    <div class="project-grid">
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/Face-Tracking-using-ESP32-CAM/">Face Tracking (ESP32-CAM)</a>
+                    <p>Closed-loop PID control system for real-time Haar Cascade coordinate mapping to PWM-driven servos.</p>
+                </div>
+                <a href="https://matsrobot.github.io/Face-Tracking-using-ESP32-CAM/"><div class="project-img-box face-tracker-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">OpenCV</span><span class="tag">PID</span></div>
+            <div class="tech-spec-line">Core Tech: Autonomous Coordinate Translation</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/Face-Tracking-using-ESP32-CAM">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/Robots-Blinking-Eyes-using-GC9A01-display/">Robot Blinking Eyes</a>
+                    <p>Frame-buffer optimization for dual GC9A01 round LCDs using hardware-accelerated SPI on the RP2040.</p>
+                </div>
+                <a href="https://matsrobot.github.io/Robots-Blinking-Eyes-using-GC9A01-display/"><div class="project-img-box roboeyes-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">Animatronics</span><span class="tag">RP2040</span></div>
+            <div class="tech-spec-line">Core Tech: Dual-SPI Hardware Sync @ 60FPS</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/Robots-Blinking-Eyes-using-GC9A01-display">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/RP2040-LCD-0.96/">RP2040 LCD 0.96" Integration</a>
+                    <p>High-speed ST7735 driver implementation featuring custom register configuration and DMA-supported SPI.</p>
+                </div>
+                <a href="https://matsrobot.github.io/RP2040-LCD-0.96/"><div class="project-img-box rp2040-lcd-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">ST7735</span><span class="tag">MicroPython</span></div>
+            <div class="tech-spec-line">Core Tech: DMA-capable SPI Bus</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/RP2040-LCD-0.96">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/DC-motor-Controller-using-Pico-and-HC-06/">Bluetooth Motor Control</a>
+                    <p>Wireless serial bridge implementation for HC-06 UART commands to H-Bridge PWM motor logic.</p>
+                </div>
+                <a href="https://matsrobot.github.io/DC-motor-Controller-using-Pico-and-HC-06/"><div class="project-img-box pico-motor-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">UART</span><span class="tag">HC-06</span></div>
+            <div class="tech-spec-line">Core Tech: Android-to-Pico Link</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/DC-motor-Controller-using-Pico-and-HC-06">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/I2C-communication-between-Processors/">I2C Processor Comms</a>
+                    <p>Inter-Integrated Circuit (I2C) bus implementation for Multi-Master/Slave telemetry between Pico and Arduino.</p>
+                </div>
+                <a href="https://matsrobot.github.io/I2C-communication-between-Processors/"><div class="project-img-box i2c-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">I2C</span><span class="tag">Embedded</span></div>
+            <div class="tech-spec-line">Core Tech: Multi-Node Bus Synchronization</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/I2C-communication-between-Processors">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/USBasp-firmware-update/">USBasp Firmware Update</a>
+                    <p>Low-level ISP programming protocol for upgrading AVR firmware and resolving SCK clock-speed issues.</p>
+                </div>
+                <a href="https://matsrobot.github.io/USBasp-firmware-update/"><div class="project-img-box usbasp-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">AVR</span><span class="tag">Firmware</span></div>
+            <div class="tech-spec-line">Core Tech: SPI Bit-Bang Programming</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/USBasp-firmware-update">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/RFID-Clocking-Machine-with-logger/">RFID Clocking Machine</a>
+                    <p>System integration of 125kHz RFID scanning with FAT32-formatted SD card SPI data logging.</p>
+                </div>
+                <a href="https://matsrobot.github.io/RFID-Clocking-Machine-with-logger/"><div class="project-img-box rfid-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">RFID</span><span class="tag">Logistics</span></div>
+            <div class="tech-spec-line">Core Tech: SPI Data Logging</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/RFID-Clocking-Machine-with-logger">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/Mobility-Scooter-Battery-Capacity-Tester/">Battery Capacity Tester</a>
+                    <p>Coulomb-counting and Voltage-divider logic for analyzing Ah capacity and discharge curves of Lead-acid cells.</p>
+                </div>
+                <a href="https://matsrobot.github.io/Mobility-Scooter-Battery-Capacity-Tester/"><div class="project-img-box battery-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">Arduino</span><span class="tag">BMS</span></div>
+            <div class="tech-spec-line">Core Tech: Analog Voltage Scaling</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/Mobility-Scooter-Battery-Capacity-Tester">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/Robot-IoT-Telemetry/">Robot IoT Monitor</a>
+                    <p>Remote telemetry hub using ESP8266 Wi-Fi modules for real-time sensor monitoring via HTTP/JSON. </p>
+                </div>
+                <a href="https://matsrobot.github.io/Robot-IoT-Telemetry/"><div class="project-img-box telemetry-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">IoT</span><span class="tag">ESP8266</span></div>
+            <div class="tech-spec-line">Core Tech: MQTT/HTTP Telemetry</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/Robot-IoT-Telemetry">View GitHub Repository</a></div>
+        </div>
+
+        <div class="card">
+            <div class="card-content-wrapper">
+                <div class="card-text">
+                    <a class="project-title-link" href="https://matsrobot.github.io/Create-New-Fritzing_Part-MT6701/">MT6701 Fritzing Part</a>
+                    <p>Precision SVG coordinate mapping for custom MT6701 magnetic encoder PCB footprints and schematics.</p>
+                </div>
+                <a href="https://matsrobot.github.io/Create-New-Fritzing_Part-MT6701/"><div class="project-img-box mt6701-img"></div></a>
+            </div>
+            <div class="tag-container"><span class="tag">PCB Design</span><span class="tag">Fritzing</span></div>
+            <div class="tech-spec-line">Core Tech: Vector Graphics SVG Mapping</div>
+            <div style="margin-top: 15px;"><a class="btn-github" href="https://github.com/MatsRobot/Create-New-Fritzing_Part-MT6701">View GitHub Repository</a></div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 MatsRobot | Part of the Open Source Robotics Initiative</p>
+    <p><small>Copyright (c) 2026 | Licensed under the <a href="https://github.com/MatsRobot/matsrobot.github.io/blob/main/LICENSE" style="color: #6a737d;">MIT License</a></small></p>
+</footer>
+
+</body>
+</html>
