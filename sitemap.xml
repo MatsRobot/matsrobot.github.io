@@ -7,6 +7,10 @@
   <url>
     <loc>https://matsrobot.github.io/AI-Foundations/</loc>
     <priority>0.80</priority>
+  </url>  
+  <url>
+    <loc>https://matsrobot.github.io/Digital-Nervous-System/</loc>
+    <priority>0.80</priority>
   </url>
   <url>
     <loc>https://matsrobot.github.io/Face-Tracking-using-ESP32-CAM/</loc>
