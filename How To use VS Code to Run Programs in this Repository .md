@@ -78,4 +78,18 @@ To ensure the program compiles correctly, you must replace the "blank" files cre
 
 ---
 
+## 🔍 7. General Troubleshooting Guide
+
+| Symptom | Potential Cause | Solution |
+| :--- | :--- | :--- |
+| **Red squiggly lines under `#include`** | IntelliSense hasn't indexed the libraries yet. | Click the **Ant Icon** > **Project Tasks** > **Miscellaneous** > **Rebuild IntelliSense Index**. Also, ensure libraries are in the `lib` folder. |
+| **"Could not open port / COM X"** | Port is busy or device is disconnected. | Close any other Serial Monitors (like Arduino IDE). Unplug and replug the USB cable. |
+| **"Timed out waiting for packet header"** | Board not in Bootloader/Flash mode. | Hold the 'Boot' button while clicking Upload, or ensure **GPIO 0** is grounded for ESP32-CAM. |
+| **Success message, but nothing happens** | Code is uploaded but board is still in Flash mode. | Disconnect **GPIO 0** from **GND** and press the physical **Reset** button on the board. |
+| **Brownout Detector / Constant Reboots** | Insufficient power to the board. | Connect an external 5V power source. USB ports often can't provide enough current for ESP32-CAM with Servos. |
+| **`main.cpp: No such file or directory`** | File was pasted in the wrong location. | Ensure your code is inside the **`src`** folder, not the root directory of the project. |
+| **Extension won't load / Python error** | Portable path issues. | Restart VS Code. If it persists, delete the `.platformio` folder inside your `data` directory and let it reinstall. |
+
+---
+
 <small>© 2026 MatsRobot | Licensed under the [MIT License](https://github.com/MatsRobot/matsrobot.github.io/blob/main/LICENSE)</small>
