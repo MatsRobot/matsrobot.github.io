@@ -1,4 +1,3 @@
-<img width="392" height="358" alt="Fritzing_Parts" src="https://github.com/user-attachments/assets/613e9343-f8fd-4075-9b65-4da632f40e00" />
 # matsrobot.github.io
 
 ---
