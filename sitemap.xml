@@ -5,6 +5,10 @@
     <priority>1.00</priority>
   </url>
   <url>
+    <loc>https://matsrobot.github.io/The-Humanoid-Blueprint-Systems-Integration-Roadmap/</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
     <loc>https://matsrobot.github.io/AI-Foundations/</loc>
     <priority>0.80</priority>
   </url>  
@@ -46,6 +50,18 @@
   </url>
   <url>
     <loc>https://matsrobot.github.io/Robot-IoT-Telemetry/</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://matsrobot.github.io/Mind-Control-Ball-Helicopter/</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://matsrobot.github.io/VW-T5-Intelligent-Split-Charge-Management-System/</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://matsrobot.github.io/Fritzing_Part_Catalogue/</loc>
     <priority>0.80</priority>
   </url>
   <url>
